@@ -22,13 +22,33 @@ class HomeViewModel: HomeViewModelImplementable {
     private let movieService: MovieServiceImplementable
 
     private var upcomingsPage = 0
+    private var nowPlayingsPage = 0
 
     init(movieService: MovieServiceImplementable) {
         self.movieService = movieService
     }
 
     func presenNowPlaying() {
-        movieService.retrieve(.nowPlaying, page: 1) { _ in
+        nowPlayingsPage += 1
+        movieService.retrieve(.nowPlaying, page: nowPlayingsPage) { result in
+            switch result {
+            case let .success(movies):
+                let models = movies.map { movie -> Home.NowPlaying in
+                    var title = movie.title ?? "No title"
+                    if let year = movie.date?.year {
+                        title = "\(title)(\(year)"
+                    }
+
+                    return Home.NowPlaying(title: title,
+                                           description: movie.overview ?? "No description",
+                                           backdrop: movie.backdrop ?? "")
+                }
+
+                self.view?.displayNowPlaying(models)
+
+            case .failure:
+                break
+            }
         }
     }
 
@@ -59,6 +79,8 @@ class HomeViewModel: HomeViewModelImplementable {
 
     func refresh() {
         upcomingsPage = 0
+        nowPlayingsPage = 0
         presentUpcoming()
+        presenNowPlaying()
     }
 }

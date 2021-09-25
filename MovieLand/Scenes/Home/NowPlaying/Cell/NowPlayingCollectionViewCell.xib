@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -21,16 +20,36 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r5c-76-kso">
                         <rect key="frame" x="0.0" y="0.0" width="488" height="351"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Now Playing Sample" translatesAutoresizingMaskIntoConstraints="NO" id="ETn-IA-XRJ">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Now Playing Sample" translatesAutoresizingMaskIntoConstraints="NO" id="ETn-IA-XRJ">
                                 <rect key="frame" x="0.0" y="0.0" width="488" height="351"/>
                             </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="tvf-yX-qXK">
+                                <rect key="frame" x="20" y="265" width="448" height="54"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t30-JQ-ayh">
+                                        <rect key="frame" x="0.0" y="0.0" width="448" height="25.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UpK-6w-fmH">
+                                        <rect key="frame" x="0.0" y="33.5" width="448" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ETn-IA-XRJ" firstAttribute="leading" secondItem="r5c-76-kso" secondAttribute="leading" id="6Zf-zr-P6I"/>
                             <constraint firstAttribute="bottom" secondItem="ETn-IA-XRJ" secondAttribute="bottom" id="9TD-eJ-Wvq"/>
+                            <constraint firstItem="tvf-yX-qXK" firstAttribute="leading" secondItem="r5c-76-kso" secondAttribute="leading" constant="20" id="9Xl-Tf-eYW"/>
+                            <constraint firstAttribute="trailing" secondItem="tvf-yX-qXK" secondAttribute="trailing" constant="20" id="NMn-VW-sjt"/>
                             <constraint firstAttribute="trailing" secondItem="ETn-IA-XRJ" secondAttribute="trailing" id="mQF-TD-TOm"/>
                             <constraint firstItem="ETn-IA-XRJ" firstAttribute="top" secondItem="r5c-76-kso" secondAttribute="top" id="sMZ-89-sTG"/>
+                            <constraint firstAttribute="bottom" secondItem="tvf-yX-qXK" secondAttribute="bottom" constant="32" id="uq3-ND-u97"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -43,13 +62,15 @@
                 <constraint firstAttribute="trailing" secondItem="r5c-76-kso" secondAttribute="trailing" id="u08-Jw-1Wf"/>
             </constraints>
             <size key="customSize" width="488" height="351"/>
+            <connections>
+                <outlet property="backdropImageView" destination="ETn-IA-XRJ" id="w1l-le-rHI"/>
+                <outlet property="descriptionLabel" destination="UpK-6w-fmH" id="8eo-RE-zAs"/>
+                <outlet property="titleLabel" destination="t30-JQ-ayh" id="qq0-fn-VeU"/>
+            </connections>
             <point key="canvasLocation" x="343.47826086956525" y="235.37946428571428"/>
         </collectionViewCell>
     </objects>
     <resources>
         <image name="Now Playing Sample" width="375" height="256"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

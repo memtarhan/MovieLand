@@ -8,15 +8,24 @@
 
 import UIKit
 
+protocol NowPlayingViewDelegate {
+    func didViewLast()
+}
+
 class NowPlayingView: UITableViewHeaderFooterView {
     // MARK: - Outlets
 
     @IBOutlet var collectionView: UICollectionView!
+    @IBOutlet var pageControl: UIPageControl!
 
     // MARK: - Properties
 
+    var delegate: NowPlayingViewDelegate?
+
     private let cellNibIdentifier = "NowPlayingCollectionViewCell"
     private let cellReuseIdentifier = "Now Playing"
+
+    private var playings: [Home.NowPlaying] = []
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,6 +35,20 @@ class NowPlayingView: UITableViewHeaderFooterView {
 
         collectionView.dataSource = self
         collectionView.delegate = self
+
+        pageControl.numberOfPages = playings.count
+    }
+
+    func display(_ playings: [Home.NowPlaying]) {
+        self.playings.append(contentsOf: playings)
+        pageControl.numberOfPages = self.playings.count
+        collectionView.reloadData()
+    }
+
+    func refresh() {
+        playings = []
+        pageControl.numberOfPages = playings.count
+        collectionView.reloadData()
     }
 }
 
@@ -33,13 +56,16 @@ class NowPlayingView: UITableViewHeaderFooterView {
 
 extension NowPlayingView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return playings.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath) as? NowPlayingCollectionViewCell else {
             return UICollectionViewCell()
         }
+
+        let model = playings[indexPath.row]
+        cell.configure(model)
 
         return cell
     }
@@ -48,15 +74,26 @@ extension NowPlayingView: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 
 extension NowPlayingView: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let index = indexPath.row
+        pageControl.currentPage = index
+
+        if index == playings.count - 1 {
+            delegate?.didViewLast()
+        }
+    }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
 
 extension NowPlayingView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: collectionView.frame.width)
+        let width = collectionView.frame.width
+        let height = (width / 16) * 9 // 16/9 ratio
+
+        return CGSize(width: width, height: height)
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }

@@ -12,6 +12,7 @@ protocol HomeViewImplementable: AnyObject {
     var viewModel: HomeViewModelImplementable? { get set }
 
     func displayUpcoming(_ models: [Home.Upcoming])
+    func displayNowPlaying(_ models: [Home.NowPlaying])
 }
 
 class HomeViewController: UIViewController {
@@ -28,7 +29,6 @@ class HomeViewController: UIViewController {
     private let cellReuseIdentifier = "Upcoming"
     private let headerNibIdentifier = "NowPlayingView"
     private let headerReuseIdentifier = "NowPlayingView"
-    private let cellRowHeight: CGFloat = 160
 
     private var upcomings: [Home.Upcoming] = []
 
@@ -42,6 +42,9 @@ class HomeViewController: UIViewController {
 
     @objc private func didRefresh(_ sender: AnyObject) {
         upcomings = []
+        if let nowPlayingView = tableView.headerView(forSection: 0) as? NowPlayingView {
+            nowPlayingView.refresh()
+        }
         viewModel?.refresh()
     }
 
@@ -58,6 +61,8 @@ class HomeViewController: UIViewController {
 
         tableView.dataSource = self
         tableView.delegate = self
+
+        let cellRowHeight: CGFloat = view.frame.height / 7
         tableView.rowHeight = cellRowHeight
         tableView.estimatedRowHeight = cellRowHeight
 
@@ -90,17 +95,29 @@ extension HomeViewController: UITableViewDataSource {
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: headerReuseIdentifier) as! NowPlayingView
+        headerView.delegate = self
         return headerView
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 320
+        let width = tableView.frame.width
+        let height = (width / 16) * 9 // 16/9 ratio
+
+        return height
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row == upcomings.count - 1 {
             viewModel?.presentUpcoming()
         }
+    }
+}
+
+// MARK: - NowPlayingViewDelegate
+
+extension HomeViewController: NowPlayingViewDelegate {
+    func didViewLast() {
+        viewModel?.presenNowPlaying()
     }
 }
 
@@ -112,6 +129,14 @@ extension HomeViewController: HomeViewImplementable {
         DispatchQueue.main.async {
             self.refreshControl.endRefreshing()
             self.tableView.reloadData()
+        }
+    }
+
+    func displayNowPlaying(_ models: [Home.NowPlaying]) {
+        DispatchQueue.main.async {
+            if let nowPlayingView = self.tableView.headerView(forSection: 0) as? NowPlayingView {
+                nowPlayingView.display(models)
+            }
         }
     }
 }

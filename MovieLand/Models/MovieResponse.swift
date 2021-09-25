@@ -17,11 +17,13 @@ class MovieModel: Codable {
     var title: String?
     var overview: String?
     var poster: String?
+    var backdrop: String?
     var date: Date?
 
     enum CodingKeys: String, CodingKey {
         case title, overview
         case poster = "poster_path"
+        case backdrop = "backdrop_path"
         case date = "release_date"
     }
 
@@ -34,6 +36,10 @@ class MovieModel: Codable {
 
         if let photoId = try? values.decode(String.self, forKey: .poster) {
             poster = "https://image.tmdb.org/t/p/original\(photoId)"
+        }
+        
+        if let photoId = try? values.decode(String.self, forKey: .backdrop) {
+            backdrop = "https://image.tmdb.org/t/p/original\(photoId)"
         }
     }
 }

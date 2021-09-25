@@ -9,6 +9,12 @@
 import Foundation
 
 struct Home {
+    struct NowPlaying {
+        let title: String
+        let description: String
+        let backdrop: String
+    }
+
     struct Upcoming {
         let title: String
         let description: String
