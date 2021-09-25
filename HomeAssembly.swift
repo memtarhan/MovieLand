@@ -20,8 +20,8 @@ class HomeAssembly: Assembly {
             return viewController
         }
 
-        container.register(HomeViewModelImplementable.self) { _ in
-            HomeViewModel()
+        container.register(HomeViewModelImplementable.self) { r in
+            HomeViewModel(movieService: r.resolve(MovieServiceImplementable.self)!)
         }
     }
 }

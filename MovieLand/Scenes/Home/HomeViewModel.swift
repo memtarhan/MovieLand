@@ -9,7 +9,24 @@
 import Foundation
 
 protocol HomeViewModelImplementable: AnyObject {
+    func presenNowPlaying()
+    func presentUpcoming()
 }
 
 class HomeViewModel: HomeViewModelImplementable {
+    private let movieService: MovieServiceImplementable
+
+    init(movieService: MovieServiceImplementable) {
+        self.movieService = movieService
+    }
+
+    func presenNowPlaying() {
+        movieService.retrieve(.nowPlaying, page: 1) { _ in
+        }
+    }
+
+    func presentUpcoming() {
+        movieService.retrieve(.upcoming, page: 1) { _ in
+        }
+    }
 }

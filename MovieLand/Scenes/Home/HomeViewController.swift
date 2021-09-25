@@ -59,6 +59,9 @@ class HomeViewController: UIViewController {
         tableView.delegate = self
         tableView.rowHeight = cellRowHeight
         tableView.estimatedRowHeight = cellRowHeight
+        
+        viewModel?.presenNowPlaying()
+        viewModel?.presentUpcoming()
     }
 }
 
