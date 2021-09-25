@@ -26,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         initWindow()
         initDI()
         initUI()
+        initNavigationBar()
 
         return true
     }
@@ -53,5 +54,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     /// - Initializing UI w/ initial view controller
     func initUI() {
         rootViewController = assembler?.resolver.resolve(HomeViewImplementable.self) as? UIViewController
+    }
+
+    /// - Initializing UINavigationBar
+    private func initNavigationBar() {
+        let appearence = UINavigationBar.appearance()
+        appearence.tintColor = .white
+        appearence.backgroundColor = .clear
+        appearence.shadowImage = UIImage()
+        appearence.setBackgroundImage(UIImage(), for: .default)
+        appearence.isTranslucent = true
     }
 }

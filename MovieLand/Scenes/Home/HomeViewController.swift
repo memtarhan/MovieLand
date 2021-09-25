@@ -59,8 +59,12 @@ class HomeViewController: UIViewController {
     // MARK: - Navigations
 
     private func navigateToDetails(_ id: Int) {
-        guard let details = factory?.details as? UIViewController else { return }
-        present(details, animated: true, completion: nil)
+        let details = factory?.details
+        details?.movieId = id
+        guard let detailsViewController = details as? UIViewController else { return }
+        let navigationController = UINavigationController(rootViewController: detailsViewController)
+
+        present(navigationController, animated: true, completion: nil)
     }
 
     private func setup() {
@@ -139,8 +143,12 @@ extension HomeViewController: UITableViewDelegate {
 // MARK: - NowPlayingViewDelegate
 
 extension HomeViewController: NowPlayingViewDelegate {
-    func didViewLast() {
+    func nowPlayingDidViewLast() {
         viewModel?.presenNowPlaying()
+    }
+
+    func nowPlayingDidView(movie id: Int) {
+        navigateToDetails(id)
     }
 }
 

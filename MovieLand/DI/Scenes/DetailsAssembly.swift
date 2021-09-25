@@ -21,8 +21,8 @@ class DetailsAssembly: Assembly {
             return view
         }
 
-        container.register(DetailsViewModelImplementable.self) { _ in
-            DetailsViewModel()
+        container.register(DetailsViewModelImplementable.self) { r in
+            DetailsViewModel(movieService: r.resolve(MovieServiceImplementable.self)!)
         }
     }
 }

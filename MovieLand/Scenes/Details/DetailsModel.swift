@@ -7,3 +7,14 @@
 //
 
 import Foundation
+
+struct Details {
+    struct Model {
+        let title: String
+        let description: String
+        let rate: NSAttributedString
+        let date: String
+        let backdrop: String
+        let imdb: URL?
+    }
+}

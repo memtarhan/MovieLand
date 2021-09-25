@@ -9,7 +9,8 @@
 import UIKit
 
 protocol NowPlayingViewDelegate {
-    func didViewLast()
+    func nowPlayingDidViewLast()
+    func nowPlayingDidView(movie id: Int)
 }
 
 class NowPlayingView: UITableViewHeaderFooterView {
@@ -79,8 +80,13 @@ extension NowPlayingView: UICollectionViewDelegate {
         pageControl.currentPage = index
 
         if index == playings.count - 1 {
-            delegate?.didViewLast()
+            delegate?.nowPlayingDidViewLast()
         }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let movie = playings[indexPath.row].id
+        delegate?.nowPlayingDidView(movie: movie)
     }
 }
 
