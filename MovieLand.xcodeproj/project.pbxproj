@@ -20,6 +20,7 @@
 		43638EA226FF3EA800BCF2C7 /* DateFormatter+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43638EA126FF3EA800BCF2C7 /* DateFormatter+.swift */; };
 		43638EA826FF3F3700BCF2C7 /* MovieServiceAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43638EA726FF3F3700BCF2C7 /* MovieServiceAssembly.swift */; };
 		43638EAA26FF3FFE00BCF2C7 /* MovieService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43638EA926FF3FFE00BCF2C7 /* MovieService.swift */; };
+		43638EAE26FF4AA200BCF2C7 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43638EAD26FF4AA200BCF2C7 /* Date+.swift */; };
 		4399B29C26FF2A70004232D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4399B29B26FF2A70004232D8 /* AppDelegate.swift */; };
 		4399B2A526FF2A70004232D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4399B2A426FF2A70004232D8 /* Assets.xcassets */; };
 		4399B2A826FF2A70004232D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4399B2A626FF2A70004232D8 /* LaunchScreen.storyboard */; };
@@ -69,6 +70,7 @@
 		43638EA126FF3EA800BCF2C7 /* DateFormatter+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+.swift"; sourceTree = "<group>"; };
 		43638EA726FF3F3700BCF2C7 /* MovieServiceAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieServiceAssembly.swift; sourceTree = "<group>"; };
 		43638EA926FF3FFE00BCF2C7 /* MovieService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieService.swift; sourceTree = "<group>"; };
+		43638EAD26FF4AA200BCF2C7 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		4399B29826FF2A70004232D8 /* MovieLand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieLand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4399B29B26FF2A70004232D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4399B2A426FF2A70004232D8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 			children = (
 				43638E9326FF391C00BCF2C7 /* UIView+.swift */,
 				43638EA126FF3EA800BCF2C7 /* DateFormatter+.swift */,
+				43638EAD26FF4AA200BCF2C7 /* Date+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -558,6 +561,7 @@
 				43638EA826FF3F3700BCF2C7 /* MovieServiceAssembly.swift in Sources */,
 				43638E9926FF3ADF00BCF2C7 /* APICallable.swift in Sources */,
 				4399B2CE26FF2CAE004232D8 /* HomeAssembly.swift in Sources */,
+				43638EAE26FF4AA200BCF2C7 /* Date+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

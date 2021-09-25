@@ -25,22 +25,22 @@
                         </constraints>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="tKA-Vu-UO7">
-                        <rect key="frame" x="185" y="56.5" width="230" height="72"/>
+                        <rect key="frame" x="189" y="56.5" width="218" height="72"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GtU-fX-ZzS" userLabel="Title Label">
-                                <rect key="frame" x="0.0" y="0.0" width="230" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GtU-fX-ZzS" userLabel="Title Label">
+                                <rect key="frame" x="0.0" y="0.0" width="218" height="24"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="egD-gl-nid" userLabel="Description Label">
-                                <rect key="frame" x="0.0" y="30" width="230" height="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="egD-gl-nid" userLabel="Description Label">
+                                <rect key="frame" x="0.0" y="30" width="218" height="18"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <color key="textColor" systemColor="secondaryLabelColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wf3-HY-uFF" userLabel="Date Label">
-                                <rect key="frame" x="0.0" y="54" width="230" height="18"/>
+                                <rect key="frame" x="0.0" y="54" width="218" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" systemColor="secondaryLabelColor"/>
                                 <nil key="highlightedColor"/>
@@ -48,20 +48,20 @@
                         </subviews>
                     </stackView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4FY-tV-BLL" userLabel="Details Button">
-                        <rect key="frame" x="418.5" y="81.5" width="12.5" height="22"/>
+                        <rect key="frame" x="426.5" y="81.5" width="12.5" height="22"/>
                         <color key="tintColor" systemColor="secondaryLabelColor"/>
                         <state key="normal" image="chevron.right" catalog="system"/>
                     </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="tKA-Vu-UO7" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="FWf-yo-wTM"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="4FY-tV-BLL" secondAttribute="trailing" constant="16" id="QPn-mK-0Ln"/>
-                    <constraint firstItem="4FY-tV-BLL" firstAttribute="trailing" secondItem="tKA-Vu-UO7" secondAttribute="trailing" constant="16" id="SRr-Ar-YN3"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="4FY-tV-BLL" secondAttribute="trailing" constant="8" id="QPn-mK-0Ln"/>
+                    <constraint firstItem="4FY-tV-BLL" firstAttribute="trailing" secondItem="tKA-Vu-UO7" secondAttribute="trailing" constant="32" id="SRr-Ar-YN3"/>
                     <constraint firstAttribute="bottom" secondItem="A99-Ns-gqU" secondAttribute="bottom" constant="16" id="TEY-eF-IcO"/>
                     <constraint firstItem="4FY-tV-BLL" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Tqo-iS-2Tl"/>
                     <constraint firstItem="A99-Ns-gqU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="XAX-UU-nqi"/>
                     <constraint firstItem="A99-Ns-gqU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="nSF-3p-HpZ"/>
-                    <constraint firstItem="tKA-Vu-UO7" firstAttribute="leading" secondItem="A99-Ns-gqU" secondAttribute="trailing" constant="16" id="uVX-yu-uea"/>
+                    <constraint firstItem="tKA-Vu-UO7" firstAttribute="leading" secondItem="A99-Ns-gqU" secondAttribute="trailing" constant="20" id="uVX-yu-uea"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

@@ -10,6 +10,8 @@ import UIKit
 
 protocol HomeViewImplementable: AnyObject {
     var viewModel: HomeViewModelImplementable? { get set }
+
+    func displayUpcoming(_ models: [Home.Upcoming])
 }
 
 class HomeViewController: UIViewController {
@@ -28,6 +30,8 @@ class HomeViewController: UIViewController {
     private let headerReuseIdentifier = "NowPlayingView"
     private let cellRowHeight: CGFloat = 160
 
+    private var upcomings: [Home.Upcoming] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -37,11 +41,8 @@ class HomeViewController: UIViewController {
     // MARK: - Actions
 
     @objc private func didRefresh(_ sender: AnyObject) {
-        // TODO: Refresh data
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            self.refreshControl.endRefreshing()
-        }
+        upcomings = []
+        viewModel?.refresh()
     }
 
     private func setup() {
@@ -59,7 +60,7 @@ class HomeViewController: UIViewController {
         tableView.delegate = self
         tableView.rowHeight = cellRowHeight
         tableView.estimatedRowHeight = cellRowHeight
-        
+
         viewModel?.presenNowPlaying()
         viewModel?.presentUpcoming()
     }
@@ -69,13 +70,16 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 100
+        return upcomings.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as? UpcomingTableViewCell else {
             return UITableViewCell()
         }
+
+        let model = upcomings[indexPath.row]
+        cell.configure(model)
 
         return cell
     }
@@ -92,9 +96,22 @@ extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 320
     }
+
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == upcomings.count - 1 {
+            viewModel?.presentUpcoming()
+        }
+    }
 }
 
 // MARK: - HomeViewImplementable
 
 extension HomeViewController: HomeViewImplementable {
+    func displayUpcoming(_ models: [Home.Upcoming]) {
+        upcomings.append(contentsOf: models)
+        DispatchQueue.main.async {
+            self.refreshControl.endRefreshing()
+            self.tableView.reloadData()
+        }
+    }
 }

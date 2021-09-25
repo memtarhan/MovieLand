@@ -6,6 +6,7 @@
 //  Copyright © 2021 MEMTARHAN. All rights reserved.
 //
 
+import Kingfisher
 import UIKit
 
 class UpcomingTableViewCell: UITableViewCell {
@@ -17,11 +18,21 @@ class UpcomingTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+
         posterImageView.roundCorners()
+        posterImageView.addBorders()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+    }
+
+    func configure(_ model: Home.Upcoming) {
+        titleLabel.text = model.title
+        descriptionLabel.text = model.description
+        dateLabel.text = model.date
+
+        let url = URL(string: model.poster)
+        posterImageView.kf.setImage(with: url)
     }
 }

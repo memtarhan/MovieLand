@@ -12,12 +12,13 @@ import UIKit
 class HomeAssembly: Assembly {
     func assemble(container: Container) {
         container.register(HomeViewImplementable.self) { r in
-            let viewController = HomeViewController(nibName: "HomeViewController", bundle: nil)
+            let view = HomeViewController(nibName: "HomeViewController", bundle: nil)
             let viewModel = r.resolve(HomeViewModelImplementable.self)!
 
-            viewController.viewModel = viewModel
+            view.viewModel = viewModel
+            viewModel.view = view
 
-            return viewController
+            return view
         }
 
         container.register(HomeViewModelImplementable.self) { r in
