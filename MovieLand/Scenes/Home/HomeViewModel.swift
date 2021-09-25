@@ -41,7 +41,8 @@ class HomeViewModel: HomeViewModelImplementable {
 
                     return Home.NowPlaying(title: title,
                                            description: movie.overview ?? "No description",
-                                           backdrop: movie.backdrop ?? "")
+                                           backdrop: movie.backdrop ?? "",
+                                           id: movie.id)
                 }
 
                 self.view?.displayNowPlaying(models)
@@ -66,7 +67,8 @@ class HomeViewModel: HomeViewModelImplementable {
                     return Home.Upcoming(title: title,
                                          description: movie.overview ?? "No description",
                                          date: movie.date?.asMovieDate ?? "No date",
-                                         poster: movie.poster ?? "")
+                                         poster: movie.poster ?? "",
+                                         id: movie.id)
                 }
 
                 self.view?.displayUpcoming(models)

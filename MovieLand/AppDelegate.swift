@@ -43,8 +43,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             MovieServiceAssembly(),
 
             /// - Scenes
+            DetailsAssembly(),
             HomeAssembly(),
         ])
+
+        assembler?.apply(assembly: ViewControllerFactoryAssembly(assembler: assembler!))
     }
 
     /// - Initializing UI w/ initial view controller

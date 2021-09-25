@@ -14,8 +14,10 @@ class HomeAssembly: Assembly {
         container.register(HomeViewImplementable.self) { r in
             let view = HomeViewController(nibName: "HomeViewController", bundle: nil)
             let viewModel = r.resolve(HomeViewModelImplementable.self)!
+            let factory = r.resolve(ViewControllerFactoryImplementable.self)!
 
             view.viewModel = viewModel
+            view.factory = factory
             viewModel.view = view
 
             return view

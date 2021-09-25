@@ -10,6 +10,7 @@ import UIKit
 
 protocol HomeViewImplementable: AnyObject {
     var viewModel: HomeViewModelImplementable? { get set }
+    var factory: ViewControllerFactoryImplementable? { get set }
 
     func displayUpcoming(_ models: [Home.Upcoming])
     func displayNowPlaying(_ models: [Home.NowPlaying])
@@ -17,6 +18,7 @@ protocol HomeViewImplementable: AnyObject {
 
 class HomeViewController: UIViewController {
     var viewModel: HomeViewModelImplementable?
+    var factory: ViewControllerFactoryImplementable?
 
     // MARK: - Outlets
 
@@ -40,12 +42,25 @@ class HomeViewController: UIViewController {
 
     // MARK: - Actions
 
-    @objc private func didRefresh(_ sender: AnyObject) {
+    @objc private func didRefresh(_ sender: UIRefreshControl) {
         upcomings = []
         if let nowPlayingView = tableView.headerView(forSection: 0) as? NowPlayingView {
             nowPlayingView.refresh()
         }
         viewModel?.refresh()
+    }
+
+    @objc private func didTapDetails(_ sender: UIButton) {
+        let index = sender.tag
+        let movie = upcomings[index]
+        navigateToDetails(movie.id)
+    }
+
+    // MARK: - Navigations
+
+    private func navigateToDetails(_ id: Int) {
+        guard let details = factory?.details as? UIViewController else { return }
+        present(details, animated: true, completion: nil)
     }
 
     private func setup() {
@@ -83,7 +98,10 @@ extension HomeViewController: UITableViewDataSource {
             return UITableViewCell()
         }
 
-        let model = upcomings[indexPath.row]
+        let index = indexPath.row
+        let model = upcomings[index]
+        cell.detailsButton.tag = index
+        cell.detailsButton.addTarget(self, action: #selector(didTapDetails(_:)), for: .touchUpInside)
         cell.configure(model)
 
         return cell
@@ -110,6 +128,11 @@ extension HomeViewController: UITableViewDelegate {
         if indexPath.row == upcomings.count - 1 {
             viewModel?.presentUpcoming()
         }
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let movie = upcomings[indexPath.row]
+        navigateToDetails(movie.id)
     }
 }
 

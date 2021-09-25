@@ -13,6 +13,7 @@ struct Home {
         let title: String
         let description: String
         let backdrop: String
+        let id: Int
     }
 
     struct Upcoming {
@@ -20,5 +21,6 @@ struct Home {
         let description: String
         let date: String
         let poster: String
+        let id: Int
     }
 }
