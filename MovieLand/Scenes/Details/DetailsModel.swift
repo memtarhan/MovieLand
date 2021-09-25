@@ -17,4 +17,9 @@ struct Details {
         let backdrop: String
         let imdb: URL?
     }
+    
+    struct Alert {
+        let title: String
+        let message: String
+    }
 }

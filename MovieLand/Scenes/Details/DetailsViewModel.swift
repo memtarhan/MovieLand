@@ -53,8 +53,10 @@ class DetailsViewModel: DetailsViewModelImplementable {
                                           imdb: imdbURL)
 
                 self.view?.display(model)
-            case .failure:
-                break
+                
+            case let .failure(error):
+                let alert = Details.Alert(title: error.title, message: error.message)
+                self.view?.displayAlert(alert)
             }
         }
     }

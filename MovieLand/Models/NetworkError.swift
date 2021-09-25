@@ -9,11 +9,13 @@
 import Foundation
 
 enum NetworkError: Error {
+    case noInternet
     case invalidURL
     case invalidResponse
 
     var title: String {
         switch self {
+        case .noInternet: return "No internet"
         case .invalidURL: return "URL is invalid"
         case .invalidResponse: return "Response is invalid"
         }
@@ -21,8 +23,9 @@ enum NetworkError: Error {
 
     var message: String {
         switch self {
-        case .invalidURL: return "URL is invalid"
-        case .invalidResponse: return "Response is invalid"
+        case .noInternet: return "Please connect your device to internet"
+        case .invalidURL: return "Please try again"
+        case .invalidResponse: return "Please try again"
         }
     }
 }

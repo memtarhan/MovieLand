@@ -14,6 +14,7 @@ protocol HomeViewImplementable: AnyObject {
 
     func displayUpcoming(_ models: [Home.Upcoming])
     func displayNowPlaying(_ models: [Home.NowPlaying])
+    func displayAlert(_ alert: Home.Alert)
 }
 
 class HomeViewController: UIViewController {
@@ -23,6 +24,7 @@ class HomeViewController: UIViewController {
     // MARK: - Outlets
 
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
     private let refreshControl = UIRefreshControl()
 
     // MARK: - Properties
@@ -103,10 +105,12 @@ extension HomeViewController: UITableViewDataSource {
         }
 
         let index = indexPath.row
-        let model = upcomings[index]
-        cell.detailsButton.tag = index
-        cell.detailsButton.addTarget(self, action: #selector(didTapDetails(_:)), for: .touchUpInside)
-        cell.configure(model)
+        if index < upcomings.count {
+            let model = upcomings[index]
+            cell.detailsButton.tag = index
+            cell.detailsButton.addTarget(self, action: #selector(didTapDetails(_:)), for: .touchUpInside)
+            cell.configure(model)
+        }
 
         return cell
     }
@@ -160,6 +164,7 @@ extension HomeViewController: HomeViewImplementable {
         DispatchQueue.main.async {
             self.refreshControl.endRefreshing()
             self.tableView.reloadData()
+            self.activityIndicator.stopAnimating()
         }
     }
 
@@ -168,6 +173,17 @@ extension HomeViewController: HomeViewImplementable {
             if let nowPlayingView = self.tableView.headerView(forSection: 0) as? NowPlayingView {
                 nowPlayingView.display(models)
             }
+        }
+    }
+
+    func displayAlert(_ alert: Home.Alert) {
+        DispatchQueue.main.async {
+            if self.refreshControl.isRefreshing {
+                self.refreshControl.endRefreshing()
+            }
+
+            self.activityIndicator.stopAnimating()
+            self.displayAlert(withTitle: alert.title, message: alert.message)
         }
     }
 }

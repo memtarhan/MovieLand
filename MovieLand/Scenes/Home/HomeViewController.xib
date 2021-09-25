@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="MovieLand" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="RmH-OC-YId" id="lap-uy-Jru"/>
                 <outlet property="tableView" destination="rAY-9y-aFJ" id="Poc-E9-ars"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -26,14 +27,19 @@
                     <color key="separatorColor" systemColor="separatorColor"/>
                     <inset key="separatorInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
                 </tableView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="RmH-OC-YId">
+                    <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="RmH-OC-YId" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="QGl-8t-3OI"/>
                 <constraint firstItem="rAY-9y-aFJ" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="Sae-cr-TGd"/>
                 <constraint firstItem="rAY-9y-aFJ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="T42-6K-xnI"/>
                 <constraint firstItem="rAY-9y-aFJ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Y2E-ey-pOO"/>
                 <constraint firstItem="rAY-9y-aFJ" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="k2z-d3-YAa"/>
+                <constraint firstItem="RmH-OC-YId" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="xSd-i9-6JC"/>
             </constraints>
             <point key="canvasLocation" x="63.768115942028992" y="108.48214285714285"/>
         </view>

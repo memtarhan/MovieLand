@@ -23,4 +23,9 @@ struct Home {
         let poster: String
         let id: Int
     }
+
+    struct Alert {
+        let title: String
+        let message: String
+    }
 }

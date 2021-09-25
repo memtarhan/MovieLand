@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4331D18D26FF8A38002C24D1 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4331D18C26FF8A38002C24D1 /* Connectivity.swift */; };
+		4331D18F26FF8B96002C24D1 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4331D18E26FF8B96002C24D1 /* UIViewController+Alert.swift */; };
 		43638E8526FF2FC700BCF2C7 /* NowPlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43638E8426FF2FC700BCF2C7 /* NowPlayingView.swift */; };
 		43638E8726FF2FE300BCF2C7 /* NowPlayingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43638E8626FF2FE300BCF2C7 /* NowPlayingView.xib */; };
 		43638E8B26FF32D500BCF2C7 /* NowPlayingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43638E8926FF32D500BCF2C7 /* NowPlayingCollectionViewCell.swift */; };
@@ -64,6 +66,8 @@
 		043ECC345F3013541A423DBA /* Pods-MovieLandTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieLandTests.release.xcconfig"; path = "Target Support Files/Pods-MovieLandTests/Pods-MovieLandTests.release.xcconfig"; sourceTree = "<group>"; };
 		15CC6A0AF7A79D87DDC0FF78 /* Pods-MovieLand-MovieLandUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieLand-MovieLandUITests.debug.xcconfig"; path = "Target Support Files/Pods-MovieLand-MovieLandUITests/Pods-MovieLand-MovieLandUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		2FE7489B2B7CFBCEE9C28F4E /* Pods-MovieLand-MovieLandUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieLand-MovieLandUITests.release.xcconfig"; path = "Target Support Files/Pods-MovieLand-MovieLandUITests/Pods-MovieLand-MovieLandUITests.release.xcconfig"; sourceTree = "<group>"; };
+		4331D18C26FF8A38002C24D1 /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
+		4331D18E26FF8B96002C24D1 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		43638E8426FF2FC700BCF2C7 /* NowPlayingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingView.swift; sourceTree = "<group>"; };
 		43638E8626FF2FE300BCF2C7 /* NowPlayingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NowPlayingView.xib; sourceTree = "<group>"; };
 		43638E8926FF32D500BCF2C7 /* NowPlayingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -171,6 +175,7 @@
 				43638E9326FF391C00BCF2C7 /* UIView+.swift */,
 				43638EA126FF3EA800BCF2C7 /* DateFormatter+.swift */,
 				43638EAD26FF4AA200BCF2C7 /* Date+.swift */,
+				4331D18E26FF8B96002C24D1 /* UIViewController+Alert.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -216,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				43638EBB26FF615900BCF2C7 /* ViewControllerFactoryImplementable.swift */,
+				4331D18C26FF8A38002C24D1 /* Connectivity.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -604,8 +610,10 @@
 				43638EA026FF3E0D00BCF2C7 /* MovieResponse.swift in Sources */,
 				43638E9426FF391C00BCF2C7 /* UIView+.swift in Sources */,
 				43638EB226FF601200BCF2C7 /* DetailsViewController.swift in Sources */,
+				4331D18D26FF8A38002C24D1 /* Connectivity.swift in Sources */,
 				43638EA226FF3EA800BCF2C7 /* DateFormatter+.swift in Sources */,
 				4399B29C26FF2A70004232D8 /* AppDelegate.swift in Sources */,
+				4331D18F26FF8B96002C24D1 /* UIViewController+Alert.swift in Sources */,
 				43638E9C26FF3DE400BCF2C7 /* NetworkError.swift in Sources */,
 				43638EBC26FF615900BCF2C7 /* ViewControllerFactoryImplementable.swift in Sources */,
 				43638EA826FF3F3700BCF2C7 /* MovieServiceAssembly.swift in Sources */,

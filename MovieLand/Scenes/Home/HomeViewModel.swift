@@ -47,8 +47,9 @@ class HomeViewModel: HomeViewModelImplementable {
 
                 self.view?.displayNowPlaying(models)
 
-            case .failure:
-                break
+            case let .failure(error):
+                let alert = Home.Alert(title: error.title, message: error.message)
+                self.view?.displayAlert(alert)
             }
         }
     }
@@ -73,8 +74,9 @@ class HomeViewModel: HomeViewModelImplementable {
 
                 self.view?.displayUpcoming(models)
 
-            case .failure:
-                break
+            case let .failure(error):
+                let alert = Home.Alert(title: error.title, message: error.message)
+                self.view?.displayAlert(alert)
             }
         }
     }

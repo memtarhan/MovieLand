@@ -16,6 +16,7 @@ protocol DetailsViewImplementable: AnyObject {
     var movieId: Int? { get set }
 
     func display(_ details: Details.Model)
+    func displayAlert(_ alert: Details.Alert)
 }
 
 class DetailsViewController: UIViewController {
@@ -51,7 +52,7 @@ class DetailsViewController: UIViewController {
         containerView.isHidden = true
 
         guard let movie = movieId else {
-            // TODO: HAndler error
+            displayAlert(withTitle: "Oops", message: "No movie selected")
             return
         }
 
@@ -77,7 +78,8 @@ class DetailsViewController: UIViewController {
 
     private func openLink(_ url: URL) {
         let safariViewController = SFSafariViewController(url: url)
-        navigationController?.pushViewController(safariViewController, animated: true)
+        safariViewController.modalPresentationStyle = .formSheet
+        present(safariViewController, animated: true, completion: nil)
     }
 }
 
@@ -107,6 +109,13 @@ extension DetailsViewController: DetailsViewImplementable {
             self.dateLabel.text = details.date
             self.titleLabel.text = details.title
             self.descriptionLabel.text = details.description
+        }
+    }
+
+    func displayAlert(_ alert: Details.Alert) {
+        DispatchQueue.main.async {
+            self.activityIndicator.stopAnimating()
+            self.displayAlert(withTitle: alert.title, message: alert.message)
         }
     }
 }

@@ -17,7 +17,7 @@ protocol MovieServiceImplementable: APICallable {
      - Parameter type: Type of movie
      - Parameter completionBlock: A completion block with success and/or failure messages
      */
-    func retrieve(_ type: MovieType, page: Int, _ completionBlock: @escaping (Result<[MovieModel], Error>) -> Void)
+    func retrieve(_ type: MovieType, page: Int, _ completionBlock: @escaping (Result<[MovieModel], NetworkError>) -> Void)
 
     /**
      Retrieves upcoming movies with given page
@@ -25,11 +25,16 @@ protocol MovieServiceImplementable: APICallable {
      - Parameter movie: Movie ID
      - Parameter completionBlock: A completion block with success and/or failure messages
      */
-    func retrieveDetails(for movie: Int, _ completionBlock: @escaping (Result<MovieDetailsModel, Error>) -> Void)
+    func retrieveDetails(for movie: Int, _ completionBlock: @escaping (Result<MovieDetailsModel, NetworkError>) -> Void)
 }
 
 class MovieService: MovieServiceImplementable {
-    func retrieve(_ type: MovieType, page: Int, _ completionBlock: @escaping (Result<[MovieModel], Error>) -> Void) {
+    func retrieve(_ type: MovieType, page: Int, _ completionBlock: @escaping (Result<[MovieModel], NetworkError>) -> Void) {
+        guard Connectivity.isReachable else {
+            completionBlock(.failure(NetworkError.noInternet))
+            return
+        }
+        
         let url = "\(baseURL)/\(type.rawValue)?api_key=\(key)&language=en-US&page=\(page)"
         AF.request(url)
             .responseJSON { response in
@@ -51,8 +56,13 @@ class MovieService: MovieServiceImplementable {
             }
     }
 
-    func retrieveDetails(for movie: Int, _ completionBlock: @escaping (Result<MovieDetailsModel, Error>) -> Void) {
+    func retrieveDetails(for movie: Int, _ completionBlock: @escaping (Result<MovieDetailsModel, NetworkError>) -> Void) {
         let url = "\(baseURL)/\(movie)?api_key=\(key)&language=en-US"
+        guard Connectivity.isReachable else {
+            completionBlock(.failure(NetworkError.noInternet))
+            return
+        }
+        
         AF.request(url)
             .responseJSON { response in
                 guard let data = response.data else {
