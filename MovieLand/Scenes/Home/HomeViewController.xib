@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -10,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="MovieLand" customModuleProvider="target">
             <connections>
+                <outlet property="tableView" destination="rAY-9y-aFJ" id="Poc-E9-ars"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -17,9 +19,21 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="rAY-9y-aFJ">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
+            </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-            <point key="canvasLocation" x="64" y="109"/>
+            <constraints>
+                <constraint firstItem="rAY-9y-aFJ" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="Sae-cr-TGd"/>
+                <constraint firstItem="rAY-9y-aFJ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="T42-6K-xnI"/>
+                <constraint firstItem="rAY-9y-aFJ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Y2E-ey-pOO"/>
+                <constraint firstItem="rAY-9y-aFJ" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="k2z-d3-YAa"/>
+            </constraints>
+            <point key="canvasLocation" x="63.768115942028992" y="108.48214285714285"/>
         </view>
     </objects>
     <resources>
