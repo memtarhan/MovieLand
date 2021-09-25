@@ -22,8 +22,11 @@ class HomeViewController: UIViewController {
 
     // MARK: - Properties
 
+    private let cellNibIdentifier = "UpcomingTableViewCell"
+    private let cellReuseIdentifier = "Upcoming"
     private let headerNibIdentifier = "NowPlayingView"
     private let headerReuseIdentifier = "NowPlayingView"
+    private let cellRowHeight: CGFloat = 160
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +45,9 @@ class HomeViewController: UIViewController {
     }
 
     private func setup() {
+        let cellNib = UINib(nibName: cellNibIdentifier, bundle: nil)
+        tableView.register(cellNib, forCellReuseIdentifier: cellReuseIdentifier)
+
         let headerNib = UINib(nibName: headerNibIdentifier, bundle: nil)
         tableView.register(headerNib, forHeaderFooterViewReuseIdentifier: headerReuseIdentifier)
 
@@ -51,6 +57,8 @@ class HomeViewController: UIViewController {
 
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.rowHeight = cellRowHeight
+        tableView.estimatedRowHeight = cellRowHeight
     }
 }
 
@@ -62,8 +70,9 @@ extension HomeViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = "Upcoming movie #\(indexPath.row + 1)"
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as? UpcomingTableViewCell else {
+            return UITableViewCell()
+        }
 
         return cell
     }
